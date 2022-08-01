@@ -1,0 +1,32 @@
+<h1>商品新規登録</h1>
+<%= form_with model: @item, url: '/admin/items', method: :post do |f| %>
+ <table>
+  <tbody>
+   <tr>
+    <th>商品名</th>
+    <td><%=f.text_field :name %></td>
+   </tr>
+
+   <tr>
+    <th>商品説明</th>
+    <td><%=f.text_area :introduction %></td>
+   </tr>
+
+   <tr>
+    <th>商品画像</th>
+    <td><%= f.file_field :image, accept: "image/*" %></td>
+   </tr>
+
+   <tr>
+    <th>税抜価格</th>
+    <td><%=f.text_field :price %>円</td>
+   </tr>
+
+   <tr>
+    <th>ジャンル</th>
+    <td><%= f.select :shop_id, options_from_collection_for_select(Shop.all,   :id, :name) %></td>
+   </tr>
+  </tbody>
+ </table>
+ <%=f.submit '商品登録' %>
+<% end %>

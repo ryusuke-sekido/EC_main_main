@@ -1,0 +1,2 @@
+module Admin::CustomsHelper
+end

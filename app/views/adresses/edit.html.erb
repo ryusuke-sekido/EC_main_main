@@ -1,0 +1,22 @@
+<h1>配送先編集</h1>
+<%= form_with model: @adress, url:adress_path(@adress.id), method: :patch do |f| %>
+<table>
+ <tbody>
+  <tr>
+    <th>郵便番号</th>
+    <td><%= f.text_field :postal_code %></td>
+  </tr>
+
+  <tr>
+    <th>住所</th>
+    <td><%= f.text_area :adress %></td>
+  </tr>
+
+  <tr>
+    <th>宛名</th>
+    <td><%= f.text_area :name %></td>
+  </tr>
+ </tbody>
+</table>
+<%= f.submit '更新' %>
+<% end %>

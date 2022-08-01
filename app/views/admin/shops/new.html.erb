@@ -1,0 +1,8 @@
+<h1>ここはadmin/shopのnewページです</h1>
+
+<%= form_with model:@shop, url: '/admin/shops', method: :post do |f| %>
+ <h1>ジャンル登録</h1>
+ 　<p>ジャンル名</p>
+　  <%=f.text_field :name %>
+　  <%=f.submit '登録' %>
+<% end %>

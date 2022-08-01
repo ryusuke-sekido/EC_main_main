@@ -1,0 +1,34 @@
+<li><%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete %></li>
+
+<h2>カート内商品</h2>
+<table border="1">
+ <thead>
+  <th>商品名</th>
+  <th>個数</th>
+  <th>単価(税込)</th>
+  <th>小計</th>
+ </thead>
+ <tbody>
+  <% @cart_items.each do |cart_item| %>
+   <tr>
+    <td><%= cart_item.item.name %></td>
+    <td><%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
+        <%= f.select :amount, *[1..9] %>
+        <%= f.submit '個数変更' %>
+        <% end %></td>
+    <td><%= cart_item.item.with_tax_price %>円</td>
+    <td><%= cart_item.subtotal %>円</td>
+        <% @total +=  cart_item.subtotal %>
+   </tr>
+    <% end %>
+ </tbody>
+</table>
+合計金額：<%= @total %>円
+
+ <% if @cart_items.any? %>
+  <li><%= link_to "注文画面へ", new_order_path %></li>
+  <li><%= link_to '買い物を続ける', items_path %></li>
+ <% else %>
+  <li><%= link_to '買い物を続ける', items_path %></li>
+
+ <% end %>

@@ -1,0 +1,24 @@
+<%= form_with model:@shop, url: '/admin/shops', method: :post do |f| %>
+ <h1>ジャンル登録</h1>
+  <p>ジャンル名
+   <%=f.text_field :name %>
+   <%=f.submit '新規登録' %></p>
+   <% end %>
+
+<h1>ジャンル一覧</h1>
+<table border="1">
+ <thead>
+  <th>ジャンル名</th>
+  <th></th>
+ </thead>
+
+ <tbody>
+  <% @shops.each do |shop| %>
+  <tr>
+   <td><%= shop.name %></td>
+   <td><%= link_to "編集する", edit_admin_shop_path(shop.id) %></td>
+  </tr>
+  <% end %>
+ </tbody>
+</table>
+

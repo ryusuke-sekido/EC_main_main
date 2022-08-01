@@ -1,0 +1,28 @@
+<h1>商品詳細</h1>
+<table>
+ <tbody>
+  <tr>
+   <th></th>
+   <td><h3><%= @item.name %></h3></td>
+  </tr>
+  <tr>
+   <th></th>
+   <td><%= @item.introduction %></td>
+  </tr>
+  <tr>
+   <th></th>
+   <td><%= image_tag @item.image, size: "100x100" %></td>
+  </tr>
+  <tr>
+   <th></th>
+   <td><%= @item.price %>円(税込)</td>
+  </tr>
+
+ </tbody>
+</table>
+
+ <%= form_with model: CartItem.new,local:true do |f| %>
+ <%= f.select :amount, *[1..9] %>
+ <%= f.hidden_field :item_id, :value =>@item.id  %>
+ <%= f.submit 'カートに入れる' %>
+ <% end %>
